@@ -1,40 +1,24 @@
 #include <iostream>
-#include <chrono>
-#include <thread>
-#include <cstdlib>
+#include <string>
 
-using namespace std;
-using namespace std::chrono;
+// Template function to find the maximum of two values
+template <typename T>
+T findMax(const T& a, const T& b) {
+    return (a > b) ? a : b;
+}
 
 int main() {
-    // Seed for random number generation
-    srand(time(0));
+    // Test case 1: Two integers
+    int int1 = 3, int2 = 5;
+    std::cout << "Max of " << int1 << " and " << int2 << " is " << findMax(int1, int2) << std::endl;
 
-    cout << "Welcome to the Reflex Timing Test!" << endl;
-    cout << "You will see a prompt. Press Enter as quickly as possible after you see the prompt." << endl;
-    cout << "Press Enter to start the test..." << endl;
-    cin.get();  // Wait for user to press Enter
+    // Test case 2: Two floating-point numbers
+    float float1 = 3.14f, float2 = 2.71f;
+    std::cout << "Max of " << float1 << " and " << float2 << " is " << findMax(float1, float2) << std::endl;
 
-    // Random delay before showing the prompt
-    int delay = rand() % 5000 + 1000;  // Delay between 1 and 5 seconds
-    this_thread::sleep_for(milliseconds(delay));
-
-    // Show prompt
-    cout << "Now!" << endl;
-
-    // Record time when prompt is displayed
-    auto start = high_resolution_clock::now();
-
-    // Wait for user input
-    cin.get();
-
-    // Record time when user presses Enter
-    auto end = high_resolution_clock::now();
-
-    // Calculate the reaction time
-    auto duration = duration_cast<milliseconds>(end - start).count();
-
-    cout << "Your reaction time is " << duration << " milliseconds." << endl;
+    // Test case 3: Two strings
+    std::string str1 = "apple", str2 = "banana";
+    std::cout << "Max of " << str1 << " and " << str2 << " is " << findMax(str1, str2) << std::endl;
 
     return 0;
 }
